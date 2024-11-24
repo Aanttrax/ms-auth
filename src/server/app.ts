@@ -1,11 +1,11 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-import { Routes } from '@interface/routes.interface';
+import { Routes } from '@interfaces/routes.interface';
 import { environment } from '@env/environment';
 import morgan from 'morgan';
 import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
-// import '../../db';
+import '@server/db';
 
 const {PORT, HOST} = environment
 
@@ -13,10 +13,10 @@ const corsOptions = {
     origin: '*',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
-    // exposedHeaders: ['auth-token']
+    exposedHeaders: ['auth-token']
 };
 
-export default (_routes: Routes) => {
+export default (routes: Routes) => {
 
     const app: Application = express();
 
@@ -34,7 +34,7 @@ export default (_routes: Routes) => {
     });
 
     //application routes
-    // app.use('/', routes.allRoutes);
+    app.use('/', routes.allRoutes);
 
     //404 error
     app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
