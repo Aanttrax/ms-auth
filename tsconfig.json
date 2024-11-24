@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                                  
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "baseUrl": "./",
+    "paths": {
+      "@interface/*": ["src/interface/*"],
+      "@server/*": ["src/server/*"],
+      "@routes/*": ["src/routes/*"],
+      "@env/*": ["src/environment/*"]
+    }, 
+    "sourceMap": true,                                
+    "outDir": "./dist",                                   
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,                                   
+    "noImplicitAny": true,                            
+    "useUnknownInCatchVariables": true,               
+    "noUnusedLocals": true,                           
+    "noUnusedParameters": true,                      
+    "noImplicitReturns": true,                        
+    "noFallthroughCasesInSwitch": true,               
+    "skipLibCheck": true                                 
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  // "files": ["types.d.ts"]
+}
