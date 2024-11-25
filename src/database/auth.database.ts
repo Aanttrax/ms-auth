@@ -13,10 +13,8 @@ const { TOKEN_SECRET } = environment;
 const User = mongoose.model('User', UserSchema, 'users')
 
 const signUp = async (credentials: RegisterData): Promise<string> => {
-    try {
-        
+    try {     
         const encryptedPassword: string = await encryptPassword(credentials.password)
-
         const user = await User.create({
             email: credentials.email,
             userName: credentials.userName,
@@ -24,11 +22,14 @@ const signUp = async (credentials: RegisterData): Promise<string> => {
             name: credentials.name,
             lastName: credentials.lastName
         })
-
         const token: string = jwt.sign({ _id: (user._id).toString() }, TOKEN_SECRET, { expiresIn: 60 * 60 * 24 } )
-
         return token;
     } catch (e: unknown) {
+        if (e instanceof Error) {
+            console.error('\x1b[31m%s\x1b[0m', '❌ Error: ', e.message )
+        } else {
+            console.error('\x1b[31m%s\x1b[0m', "❌ An unknown error was thrown. ", e);
+        }
         throw e;
     }
 };
@@ -44,6 +45,11 @@ const signIn = async (loginData: LoginData): Promise<string> => {
         const token: string = jwt.sign({ _id: (user._id).toString() }, TOKEN_SECRET, { expiresIn: 60 * 60 * 24 })
         return token;
     } catch (e: unknown) {
+        if (e instanceof Error) {
+            console.error('\x1b[31m%s\x1b[0m', '❌ Error: ', e.message )
+        } else {
+            console.error('\x1b[31m%s\x1b[0m', "❌ An unknown error was thrown. ", e);
+        }
         throw e;
     }
 };

@@ -16,7 +16,7 @@ const connectToMongoDB = async () => {
       if (error instanceof Error) {
           console.error('\x1b[31m%s\x1b[0m', '❌ Error connecting to MongoDB: ', error.message);
       } else {
-          console.error('\x1b[31m%s\x1b[0m', "An unknown error was thrown. ", error);
+          console.error('\x1b[31m%s\x1b[0m', "❌ An unknown error was thrown. ", error);
       }
     process.exit(1); 
   }
