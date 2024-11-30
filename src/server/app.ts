@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
+import { headersMiddleware } from '@middleware/headers.middleware';
 import '@server/db';
 
 const {PORT, HOST} = environment
@@ -27,31 +28,35 @@ export default (routes: Routes) => {
     app.use(express.urlencoded({ extended: true }));
     app.use(compression({ filter: () => true }));
     app.use(cors(corsOptions));
+    app.use(headersMiddleware);
 
     //test alive
-    app.use('/alive', (_req: Request, res: Response, _next: NextFunction) => {
+    app.use('/alive', (_req: Request, res: Response, next: NextFunction) => {
         res.status(200).json({ success: true, response: "Server online" });
+        next();
     });
 
     //application routes
     app.use('/', routes.allRoutes);
 
     //404 error
-    app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
         res.status(404).json({
             success: false,
             error: err.message || err || 'Not Found',
             stack: err.stack || null,
         });
+        next();
     });
 
     //500 error
-    app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+    app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
         res.status(500).json({
             success: false,
             error: err.message || err || 'Internal Server Error',
             stack: err.stack || null
         });
+        next();
     });
 
     app.set('port', PORT);

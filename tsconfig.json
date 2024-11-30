@@ -11,7 +11,8 @@
       "@env/*": ["src/environment/*"],
       "@controllers/*": ["src/controllers/*"],
       "@database/*": ["src/database/*"],
-      "@utilities/*": ["src/helpers/utilities/*"]
+      "@utilities/*": ["src/helpers/utilities/*"],
+      "@middleware/*": ["src/middleware/*"]
     }, 
     "sourceMap": true,                                
     "outDir": "./dist",                                   
