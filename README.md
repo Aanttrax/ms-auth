@@ -16,15 +16,16 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
 ```
 ├── src 
 │ ├── controllers # API controllers 
-│ │ ├── database # API database 
+│ ├── database # API database 
 │ │ └── schemas # Mongoose schemas 
 │ ├── environment # environments dev and prod 
 │ ├── helpers # Helper functions 
 │ │ ├── mappers # mappers
 │ │ └── utilities # utilities
-│ ├── interface # interfaces and types
+│ ├── interfaces # interfaces and types
+│ ├── middleware # middlewares
 │ ├── routes # Express routes 
-│ ├── server.ts # Server entry point 
+│ ├── server # Server entry point 
 │ │ ├── app.ts # Express app setup 
 │ │ └── db.ts # Mongo configuration
 │ └── index.ts # App configuration
@@ -39,7 +40,7 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
 1. Clone the repository:
    ```bash
    git clone https://github.com/Aanttrax/ms-auth.git
-   cd auth-microservice
+   cd ms-auth
    ```
 2. Install dependencies:
    ```bash
@@ -63,7 +64,16 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
 ---
 ## 🔗 API Endpoints
 
-1. User Registration
+1. Alive
+    - GET `/alive`
+    - Response:
+        ```json
+        {
+         "success": true,
+         "response": "Server online"
+        }
+        ```
+2. User Registration
 
     - POST `/signup`
     - Request Body:
@@ -83,7 +93,7 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
           "response": "user created"
         }
         ```
-2. User Login
+3. User Login
     - POST `/signin`
     - Request Body:
         ```json
