@@ -93,6 +93,10 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
           "response": "user created"
         }
         ```
+    - Headers:
+        ```json
+        "auth-token": "*laksjflieuaksjdhfknclkasjhfeiuhakjfaeh;f;s"
+        ```
 3. User Login
     - POST `/signin`
     - Request Body:
@@ -107,6 +111,19 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
         {
          "success": true,
          "response": "logged-in user"
+        }
+        ```
+    - Headers:
+        ```json
+        "auth-token": "*laksjflieuaksjdhfknclkasjhfeiuhakjfaeh;f;s"
+        ```
+4. isAuthenticated
+    - GET `/isauthenticated`
+    - Response:
+        ```json
+        {
+         "success": true,
+         "response": true || false
         }
         ```
 ---
@@ -135,6 +152,6 @@ A **secure and scalable authentication microservice** built with **TypeScript**,
 - Bcrypt - Password hashing library.
 - Jsonwebtoken - JWT implementation for authentication.
 
-<!-- ## 📜 License
-This project is licensed under the MIT License. See the LICENSE file for details. -->
+## 📜 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 

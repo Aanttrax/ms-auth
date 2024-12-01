@@ -5,5 +5,6 @@ const router: Router = Router();
 
 router.post('/signup', AuthController.signUp);
 router.post('/signin', AuthController.signIn);
+router.get('/isauthenticated', AuthController.isAuthenticated)
 
 export default router;
