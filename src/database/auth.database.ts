@@ -54,7 +54,22 @@ const signIn = async (loginData: LoginData): Promise<string> => {
     }
 };
 
+const isAuthenticated = async (userId: string): Promise<boolean> => {
+    try {
+        const user: IUser | null = await User.findById(userId).lean()
+        return !!user;
+    } catch (e: unknown) {
+        if (e instanceof Error) {
+            console.error('\x1b[31m%s\x1b[0m', '❌ Error: ', e.message )
+        } else {
+            console.error('\x1b[31m%s\x1b[0m', "❌ An unknown error was thrown. ", e);
+        }
+        throw e;
+    }
+};
+
 export default {
     signUp,
     signIn,
+    isAuthenticated
 };
